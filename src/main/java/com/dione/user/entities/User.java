@@ -13,6 +13,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+import com.dione.user.enums.SexoType;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -61,8 +63,8 @@ public class User {
 	@Column(nullable = false)
 	private String lastNome;
 	
-	@Column(nullable = false)
-	private String sex;
+	@OneToMany(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE})
+	private List<SexoType> sex = new ArrayList<>();
 	
 	@Column(nullable = false, unique = true)
 	private String cpf;
