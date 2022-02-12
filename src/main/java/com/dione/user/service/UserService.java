@@ -25,7 +25,7 @@ import com.dione.user.response.dto.MessageResponseDTO;
  * o tipo que será user do tipo User.Usado um método da JPA para salvar o corpo da aplicação. 
  * Como retorno chama-se a classe MessageResponseDTO apenas para indicar que foi salvo no banco, veja a anotação @Build por ela pode-se passar os valores de forma direta aos atributos da classe.
  */
-*/
+
 
 @Service
 public class UserService {
@@ -39,7 +39,7 @@ public class UserService {
 		this.userRepository = userRepository;
 	}
 
-public MessageResponseDTO createPerson(UserDTO userDTO) {
+public MessageResponseDTO createUser(UserDTO userDTO) {
 
 	User userToSave = userMapper.toModel(userDTO);
 	User savedUser = userRepository.save(userToSave);
