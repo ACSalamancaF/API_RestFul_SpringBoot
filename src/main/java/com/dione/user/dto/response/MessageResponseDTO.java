@@ -1,4 +1,4 @@
-package com.dione.user.response.dto;
+package com.dione.user.dto.response;
 
 import lombok.Builder;
 import lombok.Data;
