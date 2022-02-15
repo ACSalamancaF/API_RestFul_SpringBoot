@@ -7,7 +7,7 @@ import com.dione.user.dto.UserDTO;
 import com.dione.user.entities.User;
 
 @Mapper(componentModel = "spring")
-public interface UserMapper {
+public interface UserMapperr {
 	
 	@Mapping(target = "birthDate",
 

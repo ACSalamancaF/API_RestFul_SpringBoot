@@ -22,15 +22,12 @@ import com.dione.user.service.UserService;
 
 import lombok.AllArgsConstructor;
 
-
 @RestController
-@RequestMapping("/user")
+@RequestMapping(value = "/user")
 @AllArgsConstructor(onConstructor = @__(@Autowired))
 public class UserController {
-
 	
 	private UserService userService;
-	
 	
     @PostMapping
     @ResponseStatus(code = HttpStatus.CREATED)
@@ -38,7 +35,7 @@ public class UserController {
         return userService.createUser(userDto);
     }
     
-    @GetMapping("/{id}")
+    @GetMapping(value="/{id}")
     @ResponseStatus(code = HttpStatus.OK)
     public UserDTO findById(@PathVariable Long id) throws UserNotFoundException {
     	return userService.findByID(id);
@@ -51,7 +48,7 @@ public class UserController {
     	
     }
     
-    @DeleteMapping("/{id}")
+    @DeleteMapping(value="/{id}")
     @ResponseStatus(code = HttpStatus.OK)
     public void deleteById(@PathVariable Long id) throws UserNotFoundException{
     	userService.delete(id);

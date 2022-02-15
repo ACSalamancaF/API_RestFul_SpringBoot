@@ -1,5 +1,7 @@
 package com.dione.user.service;
 
+
+
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -10,7 +12,7 @@ import com.dione.user.dto.UserDTO;
 import com.dione.user.dto.response.MessageResponseDTO;
 import com.dione.user.entities.User;
 import com.dione.user.exception.UserNotFoundException;
-import com.dione.user.mappers.UserMapper;
+import com.dione.user.mappers.UserMapperr;
 import com.dione.user.repositories.UserRepository;
 
 import lombok.AllArgsConstructor;
@@ -38,17 +40,16 @@ public class UserService {
 	
 	private final UserRepository userRepository;
 	
-		
-	private final UserMapper userMapper;
+	private final UserMapperr userMapperr;
 	
 	public UserDTO findByID(Long id) throws UserNotFoundException {
 		User findUser = userRepository.findById(id).orElseThrow(() -> new UserNotFoundException(id));
-		return userMapper.toDTO(findUser);
+		return userMapperr.toDTO(findUser);
 	}
 	
 	public MessageResponseDTO createUser(UserDTO userDTO) {
 
-		User userToSave = userMapper.toModel(userDTO);
+		User userToSave = userMapperr.toModel(userDTO);
 		User savedUser = userRepository.save(userToSave);
 
 		MessageResponseDTO messageResponse = createMessageResponse("Person successfully created with ID ", savedUser.getId());
@@ -58,7 +59,7 @@ public class UserService {
 	}
 	public List<UserDTO> listAll(){
 		List<User> allUser = userRepository.findAll();
-		return allUser.stream().map(userMapper::toDTO).collect(Collectors.toList());
+		return allUser.stream().map(userMapperr::toDTO).collect(Collectors.toList());
 		
 	}
 	
@@ -66,7 +67,7 @@ public class UserService {
         userRepository.findById(id)
                 .orElseThrow(() -> new UserNotFoundException(id));
 
-        User updatedUser = userMapper.toModel(userDTO);
+        User updatedUser = userMapperr.toModel(userDTO);
         User savedPerson = userRepository.save(updatedUser);
 
         MessageResponseDTO messageResponse = createMessageResponse("Person successfully updated with ID ", savedPerson.getId());
